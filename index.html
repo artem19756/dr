@@ -4,16 +4,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#211329">
 <title>С Днём рождения, Никусь! 💗</title>
+
 <style>
 *{box-sizing:border-box}
 :root{color-scheme:dark}
+html{scroll-behavior:smooth}
 body{
  margin:0;min-height:100vh;overflow-x:hidden;
  font-family:Georgia,"Times New Roman",serif;
- color:#fff3f6;
- background:radial-gradient(ellipse at top,#492343 0%,#211329 48%,#100d1b 100%);
- text-align:center
+ color:#fff3f6;text-align:center;
+ background:radial-gradient(ellipse at top,#492343 0%,#211329 48%,#100d1b 100%)
 }
 body:before{
  content:"";position:fixed;inset:0;pointer-events:none;
@@ -21,13 +23,15 @@ body:before{
  background-size:47px 47px;opacity:.22
 }
 main{position:relative;z-index:1;max-width:650px;margin:auto;padding:45px 20px 65px}
-h1{font-size:clamp(35px,8vw,58px);font-weight:normal;line-height:1.2;color:#ffe0a9;text-shadow:0 0 25px #ff9eb866}
-.subtitle{color:#eac9db;font-size:16px;letter-spacing:2px;margin:15px 0 40px}
+h1{
+ font-size:clamp(35px,8vw,58px);font-weight:normal;line-height:1.2;
+ color:#ffe0a9;text-shadow:0 0 25px #ff9eb866
+}
+.subtitle{color:#eac9db;font-size:14px;letter-spacing:2px;margin:15px 0 40px}
 .envelope-area{height:260px;display:flex;justify-content:center;align-items:center;perspective:900px}
 .envelope{
  position:relative;width:min(310px,85vw);height:190px;
- cursor:pointer;filter:drop-shadow(0 15px 25px #0006);
- transition:transform .3s
+ cursor:pointer;filter:drop-shadow(0 15px 25px #0006);transition:transform .3s
 }
 .envelope:hover{transform:translateY(-5px)}
 .back{position:absolute;inset:0;background:#bd708f;border-radius:8px}
@@ -60,8 +64,9 @@ h1{font-size:clamp(35px,8vw,58px);font-weight:normal;line-height:1.2;color:#ffe0
 .open .flap{transform:rotateX(180deg);z-index:1}
 .open .seal{opacity:0}
 .open .letter{transform:translateY(-125px);transition-delay:.35s}
-#message{display:none;margin:45px auto 0;animation:appear 1.1s ease; text-align:left}
-#message.show{display:block}
+
+#message{display:none;margin:45px auto 0;text-align:left}
+#message.show{display:block;animation:appear 1.1s ease}
 .card{
  padding:clamp(22px,6vw,38px);border:1px solid #ffffff24;
  border-radius:24px;background:linear-gradient(145deg,#ffffff12,#ffffff05);
@@ -78,26 +83,80 @@ h1{font-size:clamp(35px,8vw,58px);font-weight:normal;line-height:1.2;color:#ffe0
 .end{text-align:center;line-height:1.9;color:#f5cfdf}
 .heart{display:inline-block;color:#ff8eae;animation:beat 1.2s infinite}
 footer{margin-top:38px;color:#b99aac;font-size:12px}
+
 button{
  display:block;margin:22px auto 0;border:1px solid #ffcfdf77;
- background:#ffffff12;color:#ffe6ee;border-radius:30px;padding:12px 22px;
- font:inherit;cursor:pointer
+ background:#ffffff12;color:#ffe6ee;border-radius:30px;
+ padding:12px 22px;font:inherit;cursor:pointer;transition:.3s
 }
 button:hover{background:#ffffff24}
-@keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+button:active{transform:scale(.96)}
+
+/* Музыкальный блок */
+.music-box{
+ margin:30px 0 20px;padding:23px 15px;
+ text-align:center;border:1px solid #ffccdf35;
+ border-radius:22px;
+ background:linear-gradient(145deg,#f7b6d116,#ffffff05);
+ box-shadow:0 0 30px #e28ba911
+}
+.music-title{color:#ffe0a9;font-size:20px;margin:0 0 8px}
+.music-description{font-size:14px;color:#eac9db;line-height:1.7}
+#musicButton{
+ background:linear-gradient(135deg,#a83d70,#e28ba9);
+ color:white;border:1px solid #ffd6e477;
+ padding:15px 23px;border-radius:35px;font-size:15px;
+ box-shadow:0 0 25px #e28ba933
+}
+#musicButton:hover{box-shadow:0 0 30px #e28ba966}
+.music-heart{
+ font-family:Arial,sans-serif;font-size:58px;
+ color:#ff8fb5;margin:15px auto 5px;
+ opacity:.75;transition:.3s
+}
+.music-heart.playing{
+ animation:heartbeat .85s infinite;
+ opacity:1;text-shadow:0 0 25px #ff4f91
+}
+#musicText{font-size:13px;color:#f1c8dc;line-height:1.6;margin-bottom:0}
+.particle{
+ position:fixed;top:-20px;z-index:8;pointer-events:none;
+ animation:fall linear forwards
+}
+@keyframes appear{
+ from{opacity:0;transform:translateY(20px)}
+ to{opacity:1;transform:translateY(0)}
+}
 @keyframes pulse{50%{opacity:.55}}
 @keyframes beat{50%{transform:scale(1.25)}}
-.particle{position:fixed;top:-20px;z-index:8;pointer-events:none;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(110vh) rotate(650deg);opacity:0}}
+@keyframes heartbeat{
+ 0%,100%{transform:scale(1)}
+ 25%{transform:scale(1.25)}
+ 45%{transform:scale(1.05)}
+ 65%{transform:scale(1.2)}
+}
+@keyframes fall{
+ to{transform:translateY(110vh) rotate(650deg);opacity:0}
+}
+@media(max-width:380px){
+ main{padding:30px 14px 45px}
+ .card{padding:21px 16px}
+ .subtitle{letter-spacing:1px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
 </style>
 </head>
+
 <body>
 <main>
  <h1>С Днём рождения,<br>Никусь! ✨</h1>
  <p class="subtitle">✦ ТВОЙ ОСОБЕННЫЙ ДЕНЬ ✦</p>
 
  <div class="envelope-area">
-  <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Открыть конверт">
+  <div class="envelope" id="envelope" role="button"
+       tabindex="0" aria-label="Открыть конверт">
    <div class="back"></div>
    <div class="letter">
     <span>💌</span>
@@ -108,16 +167,19 @@ button:hover{background:#ffffff24}
    <div class="seal">♥</div>
   </div>
  </div>
+
  <p class="hint" id="hint">Нажми на конверт, чтобы открыть письмо ♡</p>
 
  <section id="message">
   <div class="card">
    <h2>С днём рождения! 🎂</h2>
+
    <p class="intro">
     Никусь, поздравляю тебя с твоим днём! 💗<br>
     Пусть сегодня мир станет чуточку волшебнее,
     а впереди тебя ждёт море счастливых моментов.
    </p>
+
    <ul class="wishes">
     <li>🌷 <b>Счастья</b> — чтобы каждый день находился повод улыбнуться.</li>
     <li>✨ <b>Исполнения желаний</b> — даже тех, о которых ты пока никому не рассказала.</li>
@@ -126,56 +188,138 @@ button:hover{background:#ffffff24}
     <li>🌟 <b>Удачи</b> — пусть всё задуманное постепенно становится реальностью.</li>
     <li>🎀 <b>Волшебства</b> — чтобы жизнь почаще удивляла тебя приятными сюрпризами.</li>
    </ul>
+
    <p class="end">
     Оставайся такой же прекрасной душой и не переставай мечтать.<br>
     Пусть этот новый год твоей жизни будет особенным!<br><br>
-    <span class="heart">♥</span> С самым тёплым поздравлением! <span class="heart">♥</span>
+    <span class="heart">♥</span>
+    С самым тёплым поздравлением!
+    <span class="heart">♥</span>
    </p>
-   <button id="again">Прочитать ещё раз ♡</button>
+
+   <!-- Музыка и сердечко -->
+   <div class="music-box">
+    <p class="music-title">Мелодия для тебя 🎶</p>
+    <p class="music-description">
+     Никусь, нажми на кнопку и послушай 💗
+    </p>
+
+    <button id="musicButton" type="button">
+     ♡ Нажми, чтобы послушать ♡
+    </button>
+
+    <div class="music-heart" id="musicHeart">♥</div>
+
+    <p id="musicText">
+     Маленькая мелодия для тебя ✨
+    </p>
+
+    <audio id="birthdayMusic" src="music.mp3"
+           loop preload="none"></audio>
+   </div>
+
+   <button id="again" type="button">Прочитать ещё раз ♡</button>
   </div>
  </section>
+
  <footer>Сделано с теплом специально для Никусь ♡</footer>
 </main>
+
 <script>
-const envelope=document.getElementById('envelope');
-const message=document.getElementById('message');
-const hint=document.getElementById('hint');
-let opened=false;
+const envelope = document.getElementById('envelope');
+const message = document.getElementById('message');
+const hint = document.getElementById('hint');
+
+let opened = false;
+
 function confetti(){
- const symbols=['♥','✦','♡','✧','🌸'];
- for(let i=0;i<32;i++){
-  const p=document.createElement('span');
-  p.className='particle';
-  p.textContent=symbols[Math.floor(Math.random()*symbols.length)];
-  p.style.left=Math.random()*100+'vw';
-  p.style.animationDuration=(3+Math.random()*4)+'s';
-  p.style.animationDelay=Math.random()*.8+'s';
-  p.style.fontSize=(12+Math.random()*18)+'px';
-  p.style.color=['#ffd5e2','#ffe0a9','#f5a8c5'][i%3];
+ const symbols = ['♥','✦','♡','✧','🌸'];
+
+ for(let i = 0; i < 32; i++){
+  const p = document.createElement('span');
+  p.className = 'particle';
+  p.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+  p.style.left = Math.random()*100 + 'vw';
+  p.style.animationDuration = (3+Math.random()*4) + 's';
+  p.style.animationDelay = Math.random()*.8 + 's';
+  p.style.fontSize = (12+Math.random()*18) + 'px';
+  p.style.color = ['#ffd5e2','#ffe0a9','#f5a8c5'][i%3];
+
   document.body.appendChild(p);
-  setTimeout(()=>p.remove(),8000);
+  setTimeout(() => p.remove(), 8000);
  }
 }
+
 function openLetter(){
- if(opened)return;
- opened=true;
+ if(opened) return;
+
+ opened = true;
  envelope.classList.add('open');
- hint.textContent='Твоё поздравление уже здесь 💗';
- setTimeout(()=>{
+ hint.textContent = 'Твоё поздравление уже здесь 💗';
+
+ setTimeout(() => {
   message.classList.add('show');
   confetti();
   message.scrollIntoView({behavior:'smooth',block:'start'});
- },1300);
+ }, 1300);
 }
-envelope.addEventListener('click',openLetter);
-envelope.addEventListener('keydown',e=>{
- if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter()}
+
+envelope.addEventListener('click', openLetter);
+
+envelope.addEventListener('keydown', e => {
+ if(e.key === 'Enter' || e.key === ' '){
+  e.preventDefault();
+  openLetter();
+ }
 });
-document.getElementById('again').addEventListener('click',()=>{
+
+document.getElementById('again').addEventListener('click', () => {
  message.scrollIntoView({behavior:'smooth',block:'start'});
  confetti();
 });
+
+/* Управление музыкой */
+const music = document.getElementById('birthdayMusic');
+const musicButton = document.getElementById('musicButton');
+const musicHeart = document.getElementById('musicHeart');
+const musicText = document.getElementById('musicText');
+
+musicButton.addEventListener('click', async () => {
+ if(music.paused){
+  musicText.textContent = 'Загружаем твою мелодию... ♡';
+  musicButton.disabled = true;
+
+  try{
+   await music.play();
+
+   musicHeart.classList.add('playing');
+   musicButton.textContent = '♫ Остановить музыку ♡';
+   musicText.textContent = 'Эта мелодия — для тебя, Никусь 💗';
+  }catch(error){
+   musicText.textContent =
+    'Не удалось включить музыку. Проверь файл music.mp3 💗';
+  }finally{
+   musicButton.disabled = false;
+  }
+ }else{
+  music.pause();
+  musicHeart.classList.remove('playing');
+  musicButton.textContent = '♡ Нажми, чтобы послушать ♡';
+  musicText.textContent = 'Нажми, чтобы музыка заиграла снова ✨';
+ }
+});
+
+music.addEventListener('error', () => {
+ musicHeart.classList.remove('playing');
+ musicText.textContent =
+  'Музыка не найдена. Положи music.mp3 рядом с index.html 💗';
+ musicButton.textContent = '♡ Попробовать снова ♡';
+});
+
+music.addEventListener('ended', () => {
+ musicHeart.classList.remove('playing');
+ musicButton.textContent = '♡ Нажми, чтобы послушать ♡';
+});
 </script>
 </body>
-   </html>
-   
+</html>
